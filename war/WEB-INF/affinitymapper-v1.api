@@ -24,6 +24,102 @@
     "maxAge" : 0
   },
   "methods" : {
+    "affinitymapper.updateLocation" : {
+      "path" : "location/user/{userId}",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.msse.teamflyte.affinitymapper.AffinityMapperController.updateLocation",
+      "request" : {
+        "parameters" : {
+          "userId" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "affinitymapper.addUser" : {
+      "path" : "user/add",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.msse.teamflyte.affinitymapper.AffinityMapperController.addUser",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "affinitymapper.updateUser" : {
+      "path" : "user/{userId}",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.msse.teamflyte.affinitymapper.AffinityMapperController.updateUser",
+      "request" : {
+        "parameters" : {
+          "userId" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "affinitymapper.listInterestGroups" : {
+      "path" : "listInterestGroups",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.msse.teamflyte.affinitymapper.AffinityMapperController.listInterestGroups",
+      "request" : {
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "affinitymapper.getLocation" : {
+      "path" : "location/user/{userId}",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.msse.teamflyte.affinitymapper.AffinityMapperController.getLocation",
+      "request" : {
+        "parameters" : {
+          "userId" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
     "affinitymapper.getUser" : {
       "path" : "user/{userId}",
       "httpMethod" : "GET",
@@ -48,15 +144,127 @@
   },
   "descriptor" : {
     "schemas" : {
-      "JsonMap" : {
-        "id" : "JsonMap",
-        "type" : "object"
+      "Location" : {
+        "id" : "Location",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "$ref" : "Key"
+          },
+          "email" : {
+            "type" : "string"
+          },
+          "active" : {
+            "type" : "boolean"
+          },
+          "latitude" : {
+            "type" : "number"
+          },
+          "longitude" : {
+            "type" : "number"
+          }
+        }
+      },
+      "Key" : {
+        "id" : "Key",
+        "type" : "object",
+        "properties" : {
+          "kind" : {
+            "type" : "string"
+          },
+          "appId" : {
+            "type" : "string"
+          },
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "parent" : {
+            "$ref" : "Key"
+          },
+          "complete" : {
+            "type" : "boolean"
+          },
+          "namespace" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Person" : {
+        "id" : "Person",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "$ref" : "Key"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          },
+          "chatRequestToggle" : {
+            "type" : "boolean"
+          },
+          "proximityAlertLimit" : {
+            "type" : "integer"
+          },
+          "proximityAlertToggle" : {
+            "type" : "boolean"
+          },
+          "interestGroups" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "StringCollection" : {
+        "id" : "StringCollection",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
       }
     },
     "methods" : {
+      "com.msse.teamflyte.affinitymapper.AffinityMapperController.updateLocation" : {
+        "request" : {
+          "$ref" : "Location"
+        }
+      },
+      "com.msse.teamflyte.affinitymapper.AffinityMapperController.addUser" : {
+        "request" : {
+          "$ref" : "Person"
+        }
+      },
+      "com.msse.teamflyte.affinitymapper.AffinityMapperController.updateUser" : {
+        "request" : {
+          "$ref" : "Person"
+        }
+      },
+      "com.msse.teamflyte.affinitymapper.AffinityMapperController.listInterestGroups" : {
+        "response" : {
+          "$ref" : "StringCollection"
+        }
+      },
+      "com.msse.teamflyte.affinitymapper.AffinityMapperController.getLocation" : {
+        "response" : {
+          "$ref" : "Location"
+        }
+      },
       "com.msse.teamflyte.affinitymapper.AffinityMapperController.getUser" : {
         "response" : {
-          "$ref" : "JsonMap"
+          "$ref" : "Person"
         }
       }
     }

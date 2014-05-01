@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaQuery;
 
 import com.msse.teamflyte.affinitymapper.models.Location;
 import com.msse.teamflyte.affinitymapper.models.Person;
@@ -19,6 +20,7 @@ public class PersonService {
 	public List<Person> getUsersWithSimilarInterst(List<Location> nearByLocationsOfUsers){
 		List<String> nearByUserIds = getUserIdFromLocations(nearByLocationsOfUsers);
 		
+		return null;
 	}
 	
 	public List<String> getUserIdFromLocations(List<Location> nearByLocationsOfUsers){

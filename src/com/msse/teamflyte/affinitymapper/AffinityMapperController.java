@@ -13,6 +13,9 @@ import com.google.api.server.spi.config.ApiMethod.HttpMethod;
 import com.google.api.server.spi.config.Named;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
+import com.msse.teamflyte.affinitymapper.models.InterestEnum;
+import com.msse.teamflyte.affinitymapper.models.Location;
+import com.msse.teamflyte.affinitymapper.models.Person;
 
 @Api(name = "affinitymapper", version = "v1")
 public class AffinityMapperController {
@@ -28,7 +31,6 @@ public class AffinityMapperController {
 			if (query.getResultList().size() > 0) {
 				return ((List<Person>) query.getResultList()).get(0);
 			}
-
 		} finally {
 			mgr.close();
 		}
